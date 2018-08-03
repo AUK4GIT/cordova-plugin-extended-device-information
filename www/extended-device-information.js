@@ -1,3 +1,5 @@
+cordova.define("cordova-plugin-extended-device-information.device", function(require, exports, module) {
+
 var argscheck = require('cordova/argscheck'),
     channel = require('cordova/channel'),
     utils = require('cordova/utils'),
@@ -51,3 +53,4 @@ ExtendedDevice.prototype.getInfo = function (successCallback, errorCallback) {
 };
 
 module.exports = new ExtendedDevice();
+});
