@@ -1,5 +1,3 @@
-cordova.define("cordova-plugin-extended-device-information.device", function(require, exports, module) {
-
 var argscheck = require('cordova/argscheck'),
     channel = require('cordova/channel'),
     utils = require('cordova/utils'),
@@ -33,7 +31,7 @@ function ExtendedDevice() {
             me.cpumhz = info.cpumhz || 'unknown';
             me.totalstorage = info.totalstorage || 'unknown';
 
-            channel.onCordovaInfoReady.fire();
+            channel.onCordovaReady.fire();
         }, function (e) {
             me.available = false;
             utils.alert("[ERROR] Error initializing Cordova: " + e);
@@ -53,4 +51,3 @@ ExtendedDevice.prototype.getInfo = function (successCallback, errorCallback) {
 };
 
 module.exports = new ExtendedDevice();
-});
