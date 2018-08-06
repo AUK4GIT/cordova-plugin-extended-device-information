@@ -21,21 +21,21 @@ function ExtendedDevice() {
     var me = this;
 
     channel.onCordovaReady.subscribe(function () {
-        me.getInfo(function (info) {
+        if (cordova.platformId === 'android') {
+             me.getInfo(function (info) {
             //ignoring info.cordova returning from native, we should use value from cordova.version defined in cordova.js
             //TODO: CB-5105 native implementations should not return info.cordova
             var buildLabel = cordova.version;
             console.log('Device Data', info);
-
             me.memory = info.memory || 'unknown';
             me.cpumhz = info.cpumhz || 'unknown';
             me.totalstorage = info.totalstorage || 'unknown';
-
             channel.onCordovaReady.fire();
-        }, function (e) {
+            }, function (e) {
             me.available = false;
             utils.alert("[ERROR] Error initializing Cordova: " + e);
-        });
+         });
+        }
     });
 }
 
